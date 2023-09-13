@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="AddeditPayrollPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PAYROLL_HDR_VO" RangeSize="25" DataControl="Naresco_AMDataControl" id="PAYROLL_HDR_VOIterator"/>
+    <iterator Binds="PAYROLL_LINES_VO" RangeSize="6" DataControl="Naresco_AMDataControl"
+              id="PAYROLL_LINES_VOIterator"/>
+    <searchRegion Binds="PAYROLL_LINES_VOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="PAYROLL_LINES_VOQuery"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="PAYROLL_HDR_VOIterator" StaticList="false" Uses="LOV_BusinessUnitName"
+                  id="BusinessUnitName"/>
+    <listOfValues IterBinding="PAYROLL_HDR_VOIterator" StaticList="false" Uses="LOV_PeriodName" id="PeriodName"/>
+    <tree IterBinding="PAYROLL_LINES_VOIterator" id="PAYROLL_LINES_VO">
+      <nodeDefinition DefName="model.vo.PAYROLL_LINES_VO" Name="PAYROLL_LINES_VO0">
+        <AttrNames>
+          <Item Value="EmployeeNumber"/>
+          <Item Value="EmployeeName"/>
+          <Item Value="SubcontractRate"/>
+          <Item Value="RegularRate"/>
+          <Item Value="OverTimeRate"/>
+          <Item Value="IncentiveRate"/>
+          <Item Value="TotalRate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="Naresco_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="Naresco_AMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <attributeValues IterBinding="PAYROLL_HDR_VOIterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="callingReportPkg" RequiresUpdateModel="true" Action="invokeMethod" MethodName="callingReportPkg"
+                  IsViewObjectMethod="false" DataControl="Naresco_AMDataControl"
+                  InstanceName="bindings.callingReportPkg.dataControl.dataProvider"
+                  ReturnName="data.Naresco_AMDataControl.methodResults.callingReportPkg_callingReportPkg_dataControl_dataProvider_callingReportPkg_result">
+      <NamedData NDName="buid" NDType="java.lang.String"/>
+      <NamedData NDName="date" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="PAYROLL_HDR_VOIterator" id="ApprovalStatus">
+      <AttrNames>
+        <Item Value="ApprovalStatus"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

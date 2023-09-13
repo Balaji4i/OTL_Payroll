@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+        <af:panelStretchLayout id="psl1">
+                    <f:facet name="start"/>
+                    <f:facet name="end"/>
+                    <f:facet name="top"/>
+                    <f:facet name="bottom"/>
+                    <f:facet name="center">
+                    
+                        <af:panelGroupLayout id="pgl1" halign="center" >
+                        <af:spacer width="500" height="10" id="s5"/>
+                        <af:panelGroupLayout id="pgl2" halign="center" layout="vertical">
+                        
+                        <af:link text="" id="l1" action="ToPayroll" icon="/images/grid_dot_servers.png"/>
+                        <af:outputText value="Payroll" id="ot1"
+                                       inlineStyle="color:Black; font-size:small; font-weight:bold;"/>
+                        </af:panelGroupLayout>
+                           
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelStretchLayout>
+        </f:facet>
+        </af:pageTemplate>
+
+</jsp:root>

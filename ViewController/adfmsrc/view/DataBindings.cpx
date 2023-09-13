@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/pages/Run.jspx" usageId="view_RunPageDef"/>
+    <page path="/WEB-INF/taskflow/PayrollHomeBTF.xml#PayrollHomeBTF@CreateInsert"
+          usageId="view_PayrollHomeBTF_PayrollHomeBTF_CreateInsertPageDef"/>
+    <page path="/WEB-INF/taskflow/PayrollHomeBTF.xml#PayrollHomeBTF@ExecuteWithParams"
+          usageId="view_PayrollHomeBTF_PayrollHomeBTF_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/taskflow/PayrollHomeBTF.xml#PayrollHomeBTF@Execute"
+          usageId="view_PayrollHomeBTF_PayrollHomeBTF_ExecutePageDef"/>
+    <page path="/fragments/searchPayroll.jsff" usageId="view_searchPayrollPageDef"/>
+    <page path="/fragments/AddeditPayroll.jsff" usageId="view_AddeditPayrollPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_RunPageDef" path="pages.RunPageDef"/>
+    <page id="view_PayrollHomeBTF_PayrollHomeBTF_CreateInsertPageDef"
+          path="taskflow.PayrollHomeBTF_PayrollHomeBTF_CreateInsertPageDef"/>
+    <page id="view_PayrollHomeBTF_PayrollHomeBTF_ExecuteWithParamsPageDef"
+          path="taskflow.PayrollHomeBTF_PayrollHomeBTF_ExecuteWithParamsPageDef"/>
+    <page id="view_PayrollHomeBTF_PayrollHomeBTF_ExecutePageDef"
+          path="taskflow.PayrollHomeBTF_PayrollHomeBTF_ExecutePageDef"/>
+    <page id="view_searchPayrollPageDef" path="fragments.searchPayrollPageDef"/>
+    <page id="view_AddeditPayrollPageDef" path="fragments.AddeditPayrollPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="Naresco_AMDataControl" Package="model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="Naresco_AMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

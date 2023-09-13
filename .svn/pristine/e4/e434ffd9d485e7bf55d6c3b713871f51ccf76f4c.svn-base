@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14"
+                id="PayrollHomeBTF_PayrollHomeBTF_CreateInsertPageDef" Package="taskflow" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="PAYROLL_HDR_VO" RangeSize="25" DataControl="Naresco_AMDataControl" id="PAYROLL_HDR_VOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="PAYROLL_HDR_VOIterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

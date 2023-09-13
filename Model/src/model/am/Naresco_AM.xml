@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Naresco_AM"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true"
+  ComponentClass="model.am.Naresco_AMImpl"
+  ComponentInterface="model.am.common.Naresco_AM">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.am.Naresco_AM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="PAYROLL_HDR_VO"
+    ViewObjectName="model.vo.PAYROLL_HDR_VO"/>
+  <ViewUsage
+    Name="PAYROLL_LINES_VO"
+    ViewObjectName="model.vo.PAYROLL_LINES_VO"/>
+  <ViewLinkUsage
+    Name="Payroll_Hdr_Line_VL"
+    ViewLinkObjectName="model.vl.Payroll_Hdr_Line_VL"
+    SrcViewUsageName="model.am.Naresco_AM.PAYROLL_HDR_VO"
+    DstViewUsageName="model.am.Naresco_AM.PAYROLL_LINES_VO"
+    Reversed="false"/>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="callingReportPkg"
+      MethodName="callingReportPkg">
+      <Return
+        Name="_return_type_"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="buid"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="date"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</AppModule>

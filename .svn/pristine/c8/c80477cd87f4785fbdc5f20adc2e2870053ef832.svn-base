@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="searchPayrollPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PAYROLL_HDR_VO" RangeSize="6" DataControl="Naresco_AMDataControl" id="PAYROLL_HDR_VOIterator"/>
+    <searchRegion Criteria="SearchVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PAYROLL_HDR_VOIterator" id="SearchVCQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PAYROLL_HDR_VOIterator" id="PAYROLL_HDR_VO">
+      <nodeDefinition DefName="model.vo.PAYROLL_HDR_VO" Name="PAYROLL_HDR_VO0">
+        <AttrNames>
+          <Item Value="BusinessUnitName"/>
+          <Item Value="PeriodName"/>
+          <Item Value="ApprovalStatus"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PAYROLL_HDR_VOIterator" id="PayrollHdrId">
+      <AttrNames>
+        <Item Value="PayrollHdrId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

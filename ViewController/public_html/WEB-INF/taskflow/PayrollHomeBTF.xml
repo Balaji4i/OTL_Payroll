@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PayrollHomeBTF">
+    <default-activity>DashBoard</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__8">
+      <managed-bean-name>PayrollHome</managed-bean-name>
+      <managed-bean-class>view.PayrollHome</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__23">
+      <managed-bean-name>AddEditPayroll</managed-bean-name>
+      <managed-bean-class>view.AddEditPayroll</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__24">
+      <managed-bean-name>SearchPayroll</managed-bean-name>
+      <managed-bean-class>view.SearchPayroll</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="DashBoard">
+      <page>/fragments/DashBoard.jsff</page>
+    </view>
+    <view id="Payroll">
+      <page>/fragments/Payroll.jsff</page>
+    </view>
+    <view id="Invalid">
+      <page>/fragments/Invalid.jsff</page>
+    </view>
+    <router id="router">
+      <case id="__11">
+        <expression>#{pageFlowScope.val eq 'validUser'}</expression>
+        <outcome>ValidUser</outcome>
+      </case>
+      <case id="__12">
+        <expression>#{pageFlowScope.val eq 'invalidUser'}</expression>
+        <outcome>InvalidUser</outcome>
+      </case>
+      <default-outcome>ValidUser</default-outcome>
+    </router>
+    <method-call id="checkUser">
+      <method>#{backingBeanScope.PayrollHome.checkUser}</method>
+      <outcome>
+        <fixed-outcome>check</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="searchPayroll">
+      <page>/fragments/searchPayroll.jsff</page>
+    </view>
+    <view id="AddeditPayroll">
+      <page>/fragments/AddeditPayroll.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>DashBoard</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>ToPayroll</from-outcome>
+        <to-activity-id>searchPayroll</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>router</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>ValidUser</from-outcome>
+        <to-activity-id>DashBoard</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__7">
+        <from-outcome>InvalidUser</from-outcome>
+        <to-activity-id>Invalid</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>checkUser</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>check</from-outcome>
+        <to-activity-id>router</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>searchPayroll</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>ToDashboard</from-outcome>
+        <to-activity-id>DashBoard</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>add</from-outcome>
+        <to-activity-id>CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__20">
+        <from-outcome>addEdit</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>AddeditPayroll</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id>AddeditPayroll</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome>back</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__19">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>searchPayroll</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__21">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__22">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>AddeditPayroll</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+    <visibility>
+      <url-invoke-allowed/>
+    </visibility>
+  </task-flow-definition>
+</adfc-config>

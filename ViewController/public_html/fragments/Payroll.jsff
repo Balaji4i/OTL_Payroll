@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+           
+       
+         <af:panelGroupLayout id="pgl2" layout="horizontal" >
+                   
+                    <af:spacer width="10" height="10" id="s1"/>
+                   
+                    <af:commandButton text="Back" id="cb2" icon="/images/back_dis.png" inlineStyle="margin-right:5px"
+                                  action="ToDashboard"/>
+               </af:panelGroupLayout>
+               </f:facet>
+    </af:pageTemplate>
+</jsp:root>

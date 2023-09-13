@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HomeBTF">
+    <default-activity>checkUser</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__9">
+      <name>tokens</name>
+      <value>#{pageFlowScope.tokens}</value>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>PayrollHome</managed-bean-name>
+      <managed-bean-class>view.PayrollHome</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="checkUser">
+      <method>#{backingBeanScope.PayrollHome.checkUser}</method>
+      <outcome>
+        <fixed-outcome>check</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="router1">
+      <case id="__7">
+        <expression>#{pageFlowScope.val eq 'validUser'}</expression>
+        <outcome>validUser</outcome>
+      </case>
+      <case id="__8">
+        <expression>#{pageFlowScope.val eq 'invalidUser'}</expression>
+        <outcome>inValidUser</outcome>
+      </case>
+      <default-outcome>validUser</default-outcome>
+    </router>
+    <view id="Run">
+      <page>/pages/Run.jspx</page>
+    </view>
+    <view id="InvalidPage">
+      <page>/pages/InvalidPage.jspx</page>
+    </view>
+    <control-flow-rule id="__2">
+      <from-activity-id>checkUser</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>check</from-outcome>
+        <to-activity-id>router1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>router1</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>validUser</from-outcome>
+        <to-activity-id>Run</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__6">
+        <from-outcome>inValidUser</from-outcome>
+        <to-activity-id>InvalidPage</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <visibility>
+      <url-invoke-allowed/>
+    </visibility>
+  </task-flow-definition>
+</adfc-config>

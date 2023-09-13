@@ -1,0 +1,12 @@
+//Groovy Scripts for model.eo.PAYROLL_LINES_EO
+
+package model.eo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="PayrollLineId")
+def PayrollLineId_ExpressionScript_Expression()
+{
+new oracle.jbo.server.SequenceImpl("XXSC_PAYROLL_LINES_S",adf.object.getDBTransaction()).getSequenceNumber()
+}
+
